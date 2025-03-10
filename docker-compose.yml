@@ -1,0 +1,27 @@
+services:
+  inventory-db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: ${INVENTORY_DB_USER}
+      POSTGRES_PASSWORD: ${INVENTORY_DB_PASSWORD}
+      POSTGRES_DB: ${INVENTORY_DB_NAME}
+    ports:
+      - 5433:5432
+    volumes:
+      - inventory-db-data:/var/lib/postgresql/data
+  
+  order-db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: ${ORDER_DB_USER}
+      POSTGRES_PASSWORD: ${ORDER_DB_PASSWORD}
+      POSTGRES_DB: ${ORDER_DB_NAME}
+    ports:
+      - 5434:5432
+    volumes:
+      - order-db-data:/var/lib/postgresql/data
+      
+
+volumes:
+  inventory-db-data:
+  order-db-data:
